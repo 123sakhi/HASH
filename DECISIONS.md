@@ -2,6 +2,62 @@
 
 Newest first. One entry per decision taken at a stop point.
 
+## 2026-11-17: Recent sales only up to yesterday
+**Canvas block:** 6
+**Decision:** Features may use sales up to and including yesterday, never today's or later sales.
+**Reason:** At 14:00 the day before, today's sales are not complete; using them would be leakage.
+**Alternatives considered:** (b) Sales up to today: leakage. (c) No recent sales at all: needed for the Kaggle test year anyway, because its sales are withheld; whether to build both versions is an open question.
+**Decided by:** Team HASH (Q11 of /grill-question). Fact checked: the course data withholds sales for 2018-08-01 to 2019-07-31.
+
+## 2026-11-17: Use observed weather as a best case
+**Canvas block:** 6
+**Decision:** Use the observed weather in `wetter.csv`, label results as a best case, and also run the model without weather.
+**Reason:** Only a weather forecast is known at decision time, but no historical forecasts are available. Weather effects are small (FINDINGS, Week 3), so the gap is probably small; the comparison without weather shows what weather adds at most.
+**Alternatives considered:** (b) Drop weather: loses small but real effects for rolls and cakes. (c) Find historical forecasts: costly; not available now.
+**Decided by:** Team HASH (Q10 of /grill-question).
+
+## 2026-11-17: Report special segments separately
+**Canvas block:** 4
+**Decision:** Next to the overall MAPE, report scores for weekends, Kiel Week, 24 and 31 December, and the seasonal bread season.
+**Reason:** These are the days with the largest effects, where mistakes cost most.
+**Alternatives considered:** Overall score only: hides failures on the most important days.
+**Decided by:** Team HASH (Q9 of /grill-question). Limit: about 5 Kiel Weeks and 5 New Year's Eves, so segment scores are noisy.
+
+## 2026-11-17: Costlier errors depend on the product group
+**Canvas block:** 4
+**Decision:** For fresh daily goods (bread, rolls, croissants), baking too little is assumed worse than too much; for other groups no assumption is made. This shapes how results are read and presented, not the training metric.
+**Reason:** Empty shelves lose customers; MAPE treats both directions equally.
+**Alternatives considered:** (a) Both errors cost the same; (b) too little is always worse.
+**Decided by:** Team HASH (Q8 of /grill-question). To confirm with the client.
+
+## 2026-11-17: Baselines to beat
+**Canvas block:** 4
+**Decision:** Minimum bar: "same weekday last week". Next step: the course's linear regression.
+**Reason:** If a model cannot beat the simplest believable rule, it is not worth using.
+**Alternatives considered:** Average for the same weekday and month in past years: kept as a possible extra comparison.
+**Decided by:** Team HASH (Q7 of /grill-question). Limit: the naive baseline needs last week's sales, so it can only be scored on our own validation period, not in the Kaggle test year.
+
+## 2026-11-17: MAPE plus MAE per product group
+**Canvas block:** 4
+**Decision:** MAPE per product group is the main metric; MAE per product group is reported next to it.
+**Reason:** The course grades on MAPE; MAPE exaggerates errors on small values, MAE shows their real size.
+**Alternatives considered:** MAPE only; another metric.
+**Decided by:** Team HASH (Q6 of /grill-question).
+
+## 2026-11-17: Audiences and formats
+**Canvas block:** 3
+**Decision:** Operations manager: daily table per product group with a forecast range. Technical reader: notebooks plus a model card. Course: slides in `4_Presentation`.
+**Reason:** The range shows how sure the forecast is, which matters on holidays and Kiel Week.
+**Alternatives considered:** A table without a range.
+**Decided by:** Team HASH (Q5 of /grill-question).
+
+## 2026-11-17: Current practice assumed to be "same weekday last week"
+**Canvas block:** 1
+**Decision:** Assume the manager today bakes roughly what sold on the same weekday last week, adjusted by experience.
+**Reason:** Simplest believable rule; it also serves as the baseline in block 4.
+**Alternatives considered:** Gut feeling only; a fixed standard plan; unknown.
+**Decided by:** Team HASH (Q4 of /grill-question). Assumption, to confirm with the client.
+
 ## 2026-11-17: Four sub-questions: weekday, season and holidays, weather, Kiel Week
 **Canvas block:** 2
 **Decision:** Keep all four factors as sub-questions: weekday, season and holidays, weather, Kiel Week.
