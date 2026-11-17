@@ -88,6 +88,8 @@ Run with `uv run pytest checks/` (12 checks, all passing on 2026-11-17).
 
 ### 9. Experiments 🤖
 <!-- Experiment cards and their status; best result so far vs. baseline. Link experiments/LOG.md. -->
+- **Baseline (linear regression per group, `2_BaselineModel/baseline-model.ipynb`):** validation MAPE 19.3 % vs. naive "same weekday last week" 22.4 %. Beats naive for 5 of 6 groups, not for rolls (16.2 % vs. 13.7 %). Details in `experiments/LOG.md`.
+- **Best so far:** baseline. Next: main model (`3_Model`).
 
 ### 10. Findings 🤖
 <!-- What we learned, how sure we are, and what the data cannot tell. -->

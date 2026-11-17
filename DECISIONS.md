@@ -2,6 +2,19 @@
 
 Newest first. One entry per decision taken at a stop point.
 
+## 2026-11-17: Baseline model setup (B1–B6)
+**Canvas block:** 9
+**Decision:**
+- B1: train 2013-07-01 to 2017-07-31, validate 2017-08-01 to 2018-07-31; split by time, never shuffled.
+- B2: one linear regression per product group.
+- B3: predict log(turnover), convert back with exp.
+- B4: features weekday, month, Kiel Week, holiday, day before holiday, 24 Dec, 31 Dec, temperature, cloud cover, wind, precipitation. No temperature band (repeats temperature), no seasonal bread flag (repeats month), no holiday type (training holiday rows are all open days).
+- B5: no trend over the years.
+- B6: after validation, retrain on all training data and predict the Kaggle test year (`2_BaselineModel/predictions_test.csv`).
+**Reason:** The validation year mirrors the Kaggle test year (B1). Weekday effects differ in direction between groups (B2). Our effects are percentages, and MAPE is relative (B3). A straight-line trend would continue the 2013–2017 decline although 2017/18 rose again (B5).
+**Alternatives considered:** B1 random split (leakage); B2 one model for all groups; B3 turnover directly; B5 linear trend.
+**Decided by:** Team HASH ("all as recommended").
+
 ## 2026-11-17: Data preparation rules (D1–D7)
 **Canvas block:** 7
 **Decision:**
