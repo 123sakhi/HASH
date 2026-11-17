@@ -5,8 +5,15 @@ Short overview at the top; full numbers in the collapsed notes at the bottom (ne
 ## Progress
 - ✅ Project setup, Weeks 1–3 analysis, project question (Q1–Q11)
 - ✅ Data preparation: `0_DataPreparation/prepared_data.csv` (decisions D1–D7, 12 checks passing)
-- ⏳ Next: baseline model (`2_BaselineModel`)
-- ⬜ Main model, presentation
+- ✅ Baseline model: validation MAPE **19.3 %** vs. naive 22.4 % (`2_BaselineModel`, decisions B1–B6)
+- ⏳ Next: main model (`3_Model`)
+- ⬜ Presentation
+
+## Baseline results (validation year 2017-08 to 2018-07, MAPE regression / naive)
+- Bread **17.5** / 26.5 · Rolls 16.2 / **13.7** · Croissants **19.2** / 21.4 · Confectionery **23.3** / 26.4 · Cakes **16.1** / 19.9 · Seasonal bread **46.3** / 48.4
+- Beats the naive forecast for 5 of 6 groups; **rolls: naive is better**
+- Weak spots: seasonal bread (46 %), 24/31 Dec (46 %, only 2 days)
+- Learned effects match the findings (e.g. Sunday bread −48 %, Kiel Week rolls +23 %, cakes on 31 Dec +608 %)
 
 ## Project questions (details in `DECISIONS.md`)
 - **Q1 Decision:** operations manager, daily at ~14:00, plans tomorrow's baking for 6 product groups
