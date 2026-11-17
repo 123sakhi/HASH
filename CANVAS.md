@@ -21,6 +21,10 @@
 
 ### 2. Questions 👤
 <!-- The analysis questions that would change the decision. For each: what the data can answer, and what it cannot. -->
+- **Main question:** How much turnover will each of the six product groups make tomorrow?
+  - *Data can answer:* daily turnover per product group, 2013-07-01 to 2018-07-31.
+  - *Data cannot answer:* number of pieces (no prices, no piece counts); unsold or sold-out goods (only actual sales are recorded, not quantities baked). Price changes over 2013–2019 may shift turnover patterns without any change in demand.
+  - The operations manager converts the turnover forecast into pieces using current prices and experience.
 
 ### 3. Audiences 👤
 <!-- Who receives which result, in which form? At least: the decision-maker and the technical reader. -->
@@ -61,6 +65,7 @@
 
 ## Open questions
 <!-- Parking lot. Each item names who resolves it. -->
+- Price data per product group, to convert turnover into pieces (later improvement). Resolves: team, if the bakery can provide it.
 - Exact time of the daily baking decision (assumed 14:00–15:00 the day before). Resolves: team, ideally confirmed with the client.
 
 ## Decision log
