@@ -2,6 +2,13 @@
 
 Newest first. One entry per decision taken at a stop point.
 
+## 2026-11-17: The decision the project supports
+**Canvas block:** 1
+**Decision:** The branch's operations manager decides once per day, around 14:00–15:00, how much of each of the six product groups to bake for the whole next day; the head baker carries out the plan.
+**Reason:** The data is daily per product group, and the night shift needs the plan before it starts baking in the evening.
+**Alternatives considered:** Head baker or head office decides; decision late in the evening; several decisions per day. Not chosen: head office is not involved in daily quantities, and the night shift needs the plan earlier.
+**Decided by:** Team HASH (Q1 of /grill-question). The exact time is an assumption, see Open questions on the canvas.
+
 <!--
 ## YYYY-MM-DD: <short title>
 **Canvas block:** <number>

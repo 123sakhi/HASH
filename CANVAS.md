@@ -13,6 +13,11 @@
 
 ### 1. Decision 👤
 <!-- Who decides what, when and how often? What happens today without this analysis? -->
+- **Who:** the branch's operations manager decides; the head baker carries out the plan. Head office is not involved in daily quantities.
+- **What:** one quantity per product group (all six groups) for the whole next day.
+- **When / how often:** once per day, in the afternoon (about 14:00–15:00) for the next day, so the night shift can start baking in the evening.
+- **Assumption:** the exact time is the team's estimate; the client has not specified it (see Open questions).
+- **Today without this analysis:** not yet discussed.
 
 ### 2. Questions 👤
 <!-- The analysis questions that would change the decision. For each: what the data can answer, and what it cannot. -->
@@ -56,6 +61,7 @@
 
 ## Open questions
 <!-- Parking lot. Each item names who resolves it. -->
+- Exact time of the daily baking decision (assumed 14:00–15:00 the day before). Resolves: team, ideally confirmed with the client.
 
 ## Decision log
 See `DECISIONS.md`.
