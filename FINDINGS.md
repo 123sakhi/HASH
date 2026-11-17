@@ -3,10 +3,14 @@
 Short overview at the top; full numbers in the collapsed notes at the bottom (never rewritten, one new section per week). All effects are in **turnover**, not pieces.
 
 ## Progress
-- ✅ Project setup, Weeks 1–3 analysis, project question (Q1–Q11)
-- ✅ Data preparation: `0_DataPreparation/prepared_data.csv` (decisions D1–D7, 12 checks passing)
-- ✅ Baseline model: validation MAPE **19.3 %** vs. naive 22.4 % (`2_BaselineModel`, decisions B1–B6)
-- ⏳ Next: main model (`3_Model`)
+Course weeks ([course page](https://opencampus.gitbook.io/opencampus-machine-learning-program/courses/einfuehrung/week-01-introduction)) and our project steps:
+- ✅ **Week 1–2** (intro, import and visualization): seasonal bread and weekday analysis
+- ✅ **Week 3** (Git, data preparation 1): project setup, weather/Kiel Week/holiday analysis, project question (Q1–Q11)
+- ✅ **Week 4** (Git 2, feature engineering): data preparation and features, `0_DataPreparation/prepared_data.csv` (D1–D7, 12 checks)
+- ✅ **Week 5** (time series, intro ML): time split and leakage rules (Q11, B1), naive "same weekday last week" forecast
+- ✅ **Week 6** (baseline, linear regression): validation MAPE **19.3 %** vs. naive 22.4 % (`2_BaselineModel`, B1–B6)
+- ⏳ **Week 7** (overfitting, model evaluation): next
+- ⬜ **Week 8** (neural networks): main model in `3_Model`
 - ⬜ Presentation
 
 ## Baseline results (validation year 2017-08 to 2018-07, MAPE regression / naive)
