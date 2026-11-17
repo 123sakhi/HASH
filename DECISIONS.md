@@ -2,6 +2,20 @@
 
 Newest first. One entry per decision taken at a stop point.
 
+## 2026-11-17: Data preparation rules (D1–D7)
+**Canvas block:** 7
+**Decision:**
+- D1: keep only existing sales rows; do not fill missing date/group combinations with 0.
+- D2: fill missing temperature, cloud cover and wind by interpolation between neighbouring days; flag them with `weather_filled`.
+- D3: `precipitation` = 1 for weather codes 50–99; a missing code counts as no precipitation.
+- D4: add Schleswig-Holstein public holidays (package `holidays`), the day before a holiday, 24 Dec and 31 Dec. School holidays later.
+- D5: features as listed on the canvas (block 7); no lag features yet.
+- D6: build the same features for the Kaggle test year, with empty turnover.
+- D7: save `0_DataPreparation/prepared_data.csv`; add checks in `checks/test_prepared_data.py`.
+**Reason:** A missing row means not sold or closed, not zero demand (D1). Only 26 days of weather need filling (D2). The dataset documentation says a missing code most likely means no notable weather (D3). Holidays have the largest effects in `FINDINGS.md` (D4). The same preparation for training and Kaggle avoids mismatches (D6).
+**Alternatives considered:** D1 fill with 0; D2 drop rows; D3 keep raw codes or drop them; D4 no holidays or school holidays now; D6 build test features later.
+**Decided by:** Team HASH ("all as recommended"). Temperature band cut points (10 and 20 °C) are a draft for the team to check.
+
 ## 2026-11-17: Recent sales only up to yesterday
 **Canvas block:** 6
 **Decision:** Features may use sales up to and including yesterday, never today's or later sales.
