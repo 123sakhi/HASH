@@ -1,78 +1,35 @@
 # Findings
 
-What we have learned so far, in plain words. The **overview** at the top is kept short and updated each week. The **detailed notes** at the bottom keep every number and are never rewritten: each week adds a new section there.
+Short overview at the top; full numbers in the collapsed notes at the bottom (never rewritten, one new section per week). All effects are in **turnover**, not pieces.
 
-All effects are in **turnover** (sales amount), not pieces. Numbers come from `1_DatasetCharacteristics/week-03-factors.ipynb`.
+## Progress
+- ✅ Project setup, Weeks 1–3 analysis, project question (Q1–Q11)
+- ⏳ Next: data preparation (`0_DataPreparation`)
+- ⬜ Baseline model, main model, presentation
 
----
+## Project questions (details in `DECISIONS.md`)
+- **Q1 Decision:** operations manager, daily at ~14:00, plans tomorrow's baking for 6 product groups
+- **Q2 Forecast:** turnover per product group, not pieces
+- **Q3 Factors:** weekday, season/holidays, weather, Kiel Week
+- **Q4 Today:** assumed "same weekday last week" + experience *(confirm with client)*
+- **Q5 Audiences:** manager gets a daily table with a range; technical reader gets notebooks + model card; course gets slides
+- **Q6 Metric:** MAPE per product group, plus MAE
+- **Q7 Baseline:** beat "same weekday last week", then linear regression
+- **Q8 Costlier error:** too little is worse for bread, rolls, croissants *(confirm with client)*
+- **Q9 Key days:** weekends, Kiel Week, 24/31 Dec, seasonal bread season
+- **Q10 Weather:** use observed weather as a best case; also test without it
+- **Q11 Past sales:** only up to yesterday; none in the Kaggle test year
 
-## 1. Where we are
+## Analysis answers
+- **Weekday – strong:** weekends much higher (rolls Sun +48 %, confectionery Sun +69 %); bread Sun **−40 %**; Mon–Fri flat
+- **Season/holidays – strong:** seasonal bread ~35 → ~90 a day (late Oct → early Dec); closed 25/26 Dec, 1 Jan; **cakes on 31 Dec ~7× normal**
+- **Weather – weak:** small effects (rolls +0.6 %/°C, cakes −0.7 %/°C); bread unaffected
+- **Kiel Week – clear but only 5 events:** rolls +21 %, croissants +26 %, bread +10 %, cakes +8 %
+- **For the model:** include weekday, holidays (special days 24/31 Dec, closed days), Kiel Week, seasonal bread season; test weather
 
-| Step | What it means | Status |
-|---|---|---|
-| Project setup | Repository, canvas, glossary, decision log | ✅ Done |
-| Week 1: Seasonal bread | When and how much seasonal bread sells | ✅ Done |
-| Week 2: Weekdays | How sales differ Monday to Sunday | ✅ Done |
-| Week 3: Weather, Kiel Week, holidays | Do these change sales, and by how much? | ✅ Done |
-| Project question (`/grill-question`) | What we forecast, for whom, how we judge it | ✅ Done (Q1–Q11), team to confirm |
-| Data preparation (`0_DataPreparation`) | Clean notebook that merges and prepares the data | ⏳ Next |
-| Baseline model (`2_BaselineModel`) | Simple linear regression to beat | ⬜ Not started |
-| Main model (`3_Model`) | Neural network, tuning, MAPE per product group | ⬜ Not started |
-| Presentation (`4_Presentation`) | Slides, 8–10 minutes | ⬜ Not started |
-
----
-
-## 2. Our questions and answers
-
-### The project question (decided with `/grill-question`, details in `DECISIONS.md`)
-
-| # | Question | Our answer |
-|---|---|---|
-| Q1 | Who decides what, and when? | The branch's operations manager decides once a day (about 14:00–15:00) how much of each of the six product groups to bake tomorrow. |
-| Q2 | What do we forecast? | **Turnover** per product group for tomorrow, not pieces (the data has no prices or piece counts). |
-| Q3 | Which factors do we study? | Weekday, season and holidays, weather, Kiel Week. All four change the plan. |
-| Q4 | What happens today without a model? | Assumed: same weekday last week, plus experience. *To confirm with the client.* |
-| Q5 | Who gets which result? | Manager: daily table with a range. Technical reader: notebooks and a model card. Course: slides. |
-| Q6 | How do we measure error? | MAPE per product group (course metric), plus MAE to show the real size of errors. |
-| Q7 | What must the model beat? | "Same weekday last week" first, then the course's linear regression. |
-| Q8 | Which mistake costs more? | For bread, rolls and croissants, baking too little is assumed worse. *To confirm with the client.* |
-| Q9 | Which days must be good? | Weekends, Kiel Week, 24 and 31 December, the seasonal bread season. Reported separately. |
-| Q10 | Can we use weather? | Yes, observed weather, labelled as a best case (only a forecast is known in reality). Also tested without weather. |
-| Q11 | Which past sales may the model use? | Only up to yesterday. In the Kaggle test year, sales are withheld, so no recent sales there. |
-
-### The analysis questions (answered by the data)
-
-| Question | Short answer | How sure? |
-|---|---|---|
-| **(a) Do weekdays matter?** | **Yes, a lot.** Monday–Friday is flat. Weekends are much higher for rolls (Sun +48 %), croissants (Sun +42 %) and confectionery (Sun +69 %). Bread is the exception: **Sunday −40 %**. | Strong |
-| **(b) Do season and holidays matter?** | **Yes, very much.** Seasonal bread climbs from ~35 a day (late Oct) to ~90 (early Dec). The shop is closed on 25/26 Dec and 1 Jan. 24 and 31 Dec are busy for bread and rolls. **Cakes on 31 Dec are about 7× a normal day.** | Strong for the patterns, but only 5 years of each holiday |
-| **(c) Does weather matter?** | **A little.** Warmer days: rolls up (+0.6 % per °C), cakes down (−0.7 % per °C). More clouds slightly lower rolls, croissants and cakes. Bread is not affected. | Weak for most groups; effects are small |
-| **(d) Does Kiel Week matter?** | **Yes, for rolls (+21 %) and croissants (+26 %).** Smaller for bread (+10 %) and cakes (+8 %). | Clear effect, but only 5 Kiel Weeks |
-
----
-
-## 3. What each week found (short version)
-
-- **Week 1 – Seasonal bread:** It is sold only from late October to early January. Demand builds up and jumps in late November (in all 5 seasons), peaks in early December, then drops. The start date differs by year.
-- **Week 2 – Weekdays:** Monday to Friday look alike (within about ±8 %). Saturday and Sunday are busier for everything except bread, which drops by 40 % on Sundays.
-- **Week 3 – Weather, Kiel Week, holidays:** Weather has only small effects. Kiel Week clearly boosts rolls and croissants. Christmas and New Year have the biggest effects of all, especially cakes on 31 December.
-
-**What this means for the model:** weekday, holidays (with special handling for 24/31 Dec and closed days), Kiel Week and the seasonal bread season should go in. Weather is worth testing but adds little.
-
----
-
-## 4. Still open
-
-| Open question | Who resolves it |
-|---|---|
-| Price data, to turn turnover into pieces | Team, if the bakery can provide it |
-| Exact decision time, and how the manager decides today | Client |
-| Is baking too little really worse than too much? | Client |
-| Opening hours on Sundays and holidays | Client |
-| What causes the cakes peak on 31 December (doughnuts? pre-orders?) | Client |
-| Easter, Pentecost, other holidays and school holidays: not checked yet | Team, later week |
-| One model with recent sales (real use) and one without (Kaggle), or only one? | Team, when building the model |
-| One Kiel Week effect for all groups, or one per group? | Team, when building the model |
+## Still open
+- Client: prices, exact decision time, current practice, cost of too little vs too much, opening hours, cause of 31 Dec cakes peak
+- Team: Easter/Pentecost/school holidays; model with vs without recent sales; one Kiel Week effect or one per group
 
 ---
 
