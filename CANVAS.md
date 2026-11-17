@@ -57,6 +57,7 @@
 
 ### 10. Findings 🤖
 <!-- What we learned, how sure we are, and what the data cannot tell. -->
+See `FINDINGS.md` (running log, one section per week, with a summary table per factor and product group).
 
 ### 11. Recommendation 👤
 <!-- What the decision-maker should do, under which conditions. Signed off by the team. -->
