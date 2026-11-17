@@ -2,6 +2,13 @@
 
 Newest first. One entry per decision taken at a stop point.
 
+## 2026-11-17: Four sub-questions: weekday, season and holidays, weather, Kiel Week
+**Canvas block:** 2
+**Decision:** Keep all four factors as sub-questions: weekday, season and holidays, weather, Kiel Week.
+**Reason:** All four change the plan. Weekday and Kiel Week effects are strong; weather works in opposite directions for rolls and cakes; holidays have very large effects but only a few days of data (see `FINDINGS.md`, Week 3).
+**Alternatives considered:** Dropping weather (small effects) or holidays (few cases): rejected, both change the plan for some product groups.
+**Decided by:** Team HASH (Q3 of /grill-question).
+
 ## 2026-11-17: Forecast turnover, not pieces
 **Canvas block:** 2
 **Decision:** Forecast turnover per product group for tomorrow. The operations manager converts it into pieces using current prices and experience.

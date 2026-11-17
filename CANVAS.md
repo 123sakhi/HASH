@@ -25,6 +25,11 @@
   - *Data can answer:* daily turnover per product group, 2013-07-01 to 2018-07-31.
   - *Data cannot answer:* number of pieces (no prices, no piece counts); unsold or sold-out goods (only actual sales are recorded, not quantities baked). Price changes over 2013–2019 may shift turnover patterns without any change in demand.
   - The operations manager converts the turnover forecast into pieces using current prices and experience.
+- **Sub-questions (all four change the plan; evidence in `FINDINGS.md`):**
+  - (a) **Weekday:** how much does turnover differ Monday to Sunday per group? Strong effect (e.g. Sunday bread −40 %, Sunday rolls +48 %).
+  - (b) **Season and holidays:** summer vs. winter, seasonal bread season, Christmas/New Year. Very large effects (e.g. cakes on 31 Dec about 7× a normal day), but *data cannot answer reliably:* only ~5 occurrences per holiday; Easter, Pentecost and school holidays not yet checked.
+  - (c) **Weather:** do temperature and cloud cover change turnover? Small effects in opposite directions (warmer: rolls +0.6 % per °C, cakes −0.7 % per °C). *Data cannot answer:* effect of a weather **forecast**, which is all that is known at decision time.
+  - (d) **Kiel Week:** extra turnover during Kiel Week? Strong for rolls (+21 %) and croissants (+26 %). *Data cannot answer reliably:* only 5 Kiel Weeks.
 
 ### 3. Audiences 👤
 <!-- Who receives which result, in which form? At least: the decision-maker and the technical reader. -->
