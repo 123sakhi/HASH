@@ -1,4 +1,6 @@
-# Sales Forecasting for a Bakery Branch
+# Bakery Sales Forecast
+
+We forecast the daily turnover of six product groups of a bakery in Kiel using machine learning techniques. Weather, holidays and Kiel Week are included as factors that influence sales. This project is part of the opencampus.sh course "Intro to Data Science and ML".
 
 ## Description
 
