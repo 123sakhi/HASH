@@ -4,8 +4,9 @@ Short overview at the top; full numbers in the collapsed notes at the bottom (ne
 
 ## Progress
 - ✅ Project setup, Weeks 1–3 analysis, project question (Q1–Q11)
-- ⏳ Next: data preparation (`0_DataPreparation`)
-- ⬜ Baseline model, main model, presentation
+- ✅ Data preparation: `0_DataPreparation/prepared_data.csv` (decisions D1–D7, 12 checks passing)
+- ⏳ Next: baseline model (`2_BaselineModel`)
+- ⬜ Main model, presentation
 
 ## Project questions (details in `DECISIONS.md`)
 - **Q1 Decision:** operations manager, daily at ~14:00, plans tomorrow's baking for 6 product groups

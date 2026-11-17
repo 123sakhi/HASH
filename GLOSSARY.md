@@ -14,4 +14,10 @@ One entry per term, variable or code the project uses. Keep the canonical name, 
 | Leakage | Information the model would not have at decision time that still reaches training or evaluation | — | Makes results look better than they will be in use |
 | Observed weather | Weather that actually happened on the day (`wetter.csv`) | °C, octas, m/s, WMO code | Not a forecast; results using it are a best case |
 | Lag feature | A past value of turnover used as input, e.g. turnover 7 days earlier | Turnover | Only from yesterday or earlier; not available in the Kaggle test year |
+| prepared_data.csv | Prepared table from `0_DataPreparation/data-preparation.ipynb` | One row per date and product group | Column `set` = train (with turnover) or test (Kaggle year, turnover empty) |
+| weather_filled | Day where at least one weather value was filled by interpolation | 0/1 | 26 days, 13 in training, 13 in test year |
+| precipitation | Weather code 50–99 (drizzle, rain, snow, showers, thunderstorm) | 0/1 | Missing code counts as 0 |
+| is_holiday / day_before_holiday | Schleswig-Holstein public holiday / day before one | 0/1 | From package `holidays`; 24 and 31 Dec are separate flags, not public holidays |
+| seasonal_bread_season | Calendar months October to January | 0/1 | Fixed rule; the real season start varies (24 Oct–3 Nov) |
+| temp_band | Temperature category | cold <10 °C, mild 10–20 °C, warm ≥20 °C | Cut points are a draft |
 | Kaggle test year | Period whose sales are withheld for the course competition | 2018-08-01 to 2019-07-31 | Weather and Kiel Week available, sales not |

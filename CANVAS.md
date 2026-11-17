@@ -51,6 +51,11 @@
 
 ### 5. Data 🤖
 <!-- Sources, unit of observation, period covered, keys, known gaps. Link the data fact sheet. -->
+- **Sources:** course sales, weather and Kiel Week files; Schleswig-Holstein public holidays from the Python package `holidays`.
+- **Unit:** one row per date and product group; key `id` = `YYMMDD` + group.
+- **Period:** training 2013-07-01 to 2018-07-31 (9,334 rows); Kaggle test year 2018-08-01 to 2019-07-31 (1,948 rows, turnover withheld).
+- **Gaps:** 38 days without any sales (mostly holidays); confectionery missing on 53 days; seasonal bread only Oct–Jan; 26 days with filled weather.
+- **Prepared table:** `0_DataPreparation/prepared_data.csv`, built by `0_DataPreparation/data-preparation.ipynb`.
 
 ### 6. Known in advance 👤
 <!-- What information is available at the moment the result is needed? Everything else is leakage. -->
@@ -62,9 +67,20 @@
 
 ### 7. Data decisions 👤
 <!-- Joins, missing values, encodings, exclusions, each with a reason. Link the entries in DECISIONS.md. -->
+Decided 2026-11-17 (D1–D7, see `DECISIONS.md`):
+- **D1 Missing rows:** keep only existing sales rows; no zeros for closed days or products not offered.
+- **D2 Missing weather:** fill temperature, cloud cover and wind by interpolation between neighbouring days; flag `weather_filled`.
+- **D3 Weather code:** `precipitation` = 1 for codes 50–99; missing code counts as no precipitation.
+- **D4 Holidays:** SH public holidays (`holidays` package), day before a holiday, 24 Dec, 31 Dec. School holidays later.
+- **D5 Features:** weekday, month, Kiel Week, holidays, seasonal bread season (Oct–Jan), weather, precipitation, temperature band (cold <10 °C, mild 10–20 °C, warm ≥20 °C; cut points a draft). No lag features yet.
+- **D6 Test year:** same features built for 2018-08-01 to 2019-07-31, turnover empty.
+- **D7 Output:** `0_DataPreparation/prepared_data.csv`; checks in `checks/test_prepared_data.py`.
 
 ### 8. Checks 🤖
 <!-- Checkpoints and the invariants that must hold at each (row counts, keys, date ranges, IDs, baseline). Link checks/. -->
+Run with `uv run pytest checks/` (12 checks, all passing on 2026-11-17).
+- **Load:** sales file loads with the expected columns (`test_data_loads.py`).
+- **Prepared table** (`test_prepared_data.py`): training rows and turnover equal the raw sales file; one row per date and product group; correct date ranges; every test-year day present for groups 1–5; `id` matches date and group; no missing features; turnover > 0 in training and empty in test; weekday, Kiel Week, 24/31 Dec match the calendar and raw file; weather within plausible ranges.
 
 ---
 
