@@ -1,8 +1,42 @@
 # Findings
 
-Running log of what we have learned about the factors that change the baking plan. It is the team's evidence base for `CANVAS.md` (block 10) and the model. **Each week, add a new section; do not rewrite old ones.** Only write numbers the code returned, rounded; effects are in % or "per °C" (turnover has no currency and is not a number of pieces).
+Short overview at the top; full numbers in the collapsed notes at the bottom (never rewritten, one new section per week). All effects are in **turnover**, not pieces.
 
-## Summary table
+## Progress
+- ✅ Project setup, Weeks 1–3 analysis, project question (Q1–Q11)
+- ⏳ Next: data preparation (`0_DataPreparation`)
+- ⬜ Baseline model, main model, presentation
+
+## Project questions (details in `DECISIONS.md`)
+- **Q1 Decision:** operations manager, daily at ~14:00, plans tomorrow's baking for 6 product groups
+- **Q2 Forecast:** turnover per product group, not pieces
+- **Q3 Factors:** weekday, season/holidays, weather, Kiel Week
+- **Q4 Today:** assumed "same weekday last week" + experience *(confirm with client)*
+- **Q5 Audiences:** manager gets a daily table with a range; technical reader gets notebooks + model card; course gets slides
+- **Q6 Metric:** MAPE per product group, plus MAE
+- **Q7 Baseline:** beat "same weekday last week", then linear regression
+- **Q8 Costlier error:** too little is worse for bread, rolls, croissants *(confirm with client)*
+- **Q9 Key days:** weekends, Kiel Week, 24/31 Dec, seasonal bread season
+- **Q10 Weather:** use observed weather as a best case; also test without it
+- **Q11 Past sales:** only up to yesterday; none in the Kaggle test year
+
+## Analysis answers
+- **Weekday – strong:** weekends much higher (rolls Sun +48 %, confectionery Sun +69 %); bread Sun **−40 %**; Mon–Fri flat
+- **Season/holidays – strong:** seasonal bread ~35 → ~90 a day (late Oct → early Dec); closed 25/26 Dec, 1 Jan; **cakes on 31 Dec ~7× normal**
+- **Weather – weak:** small effects (rolls +0.6 %/°C, cakes −0.7 %/°C); bread unaffected
+- **Kiel Week – clear but only 5 events:** rolls +21 %, croissants +26 %, bread +10 %, cakes +8 %
+- **For the model:** include weekday, holidays (special days 24/31 Dec, closed days), Kiel Week, seasonal bread season; test weather
+
+## Still open
+- Client: prices, exact decision time, current practice, cost of too little vs too much, opening hours, cause of 31 Dec cakes peak
+- Team: Easter/Pentecost/school holidays; model with vs without recent sales; one Kiel Week effect or one per group
+
+---
+
+<details>
+<summary><b>Detailed notes (all numbers, unchanged weekly sections) – click to open</b></summary>
+
+### Summary table
 
 Effect = change in average daily turnover. Weekday effects are vs. the Monday–Friday average. Weather and Kiel Week effects come from a regression that holds weekday, month and year constant. Holiday effects are vs. other December/January days. "Use in model?" is a **draft for the team to confirm**.
 
@@ -37,7 +71,7 @@ Effect = change in average daily turnover. Weekday effects are vs. the Monday–
 | Holidays | Cakes | **31 Dec about 7× a normal day (+627 %; +511 % to +702 % every year)**; 24 Dec +4 % | strong (all 5 years) | week-03-factors, Week 3 | yes |
 | Holidays | Confectionery, Seasonal bread | 31 Dec −43 % / −45 % (sold in only 2 / 1 years) | weak | week-03-factors, Week 3 | test |
 
-## Week 1
+### Week 1
 
 *Original analysis is not in this repository (probably in `ml-practice`). The numbers below were re-computed in `1_DatasetCharacteristics/week-03-factors.ipynb`, section 2.*
 
@@ -46,7 +80,7 @@ Effect = change in average daily turnover. Weekday effects are vs. the Monday–
 - **October vs November test:** November is +70 % above October (Welch t-test, p < 0.001). *How sure:* **weak**. There are only 13 October days, all in late October, from 3 seasons, and in 2017/18 November was *lower* than October (−22 %). The p-value counts days, but the independent cases are seasons. *Does not tell us:* what happens in early October. In 2015 and 2016 sales only started in early November.
 - **The season length differs by year:** it starts between 24 October and 3 November and ends between 27 December and 6 January. *Does not tell us:* whether the start date is a decision by the bakery (supply) or a reaction to demand.
 
-## Week 2
+### Week 2
 
 *Original analysis is not in this repository. The numbers below were re-computed in `1_DatasetCharacteristics/week-03-factors.ipynb`, section 3.*
 
@@ -56,7 +90,7 @@ Effect = change in average daily turnover. Weekday effects are vs. the Monday–
 - **Seasonal bread:** Saturday +14 %, Sunday −9 %. *How sure:* weak, with only about 40 weeks of data.
 - *Does not tell us:* whether the Sunday pattern comes from shorter opening hours or from demand. The data has no opening hours.
 
-## Week 3
+### Week 3
 
 *Notebook: `1_DatasetCharacteristics/week-03-factors.ipynb`, sections 4–5. We merged sales, weather and Kiel Week on the date, and the row count stayed 9,334. Model: log(turnover) ~ temperature + cloud cover + Kiel Week + weekday + month + year, one per product group, with HAC (7-day) standard errors. 9,264 rows were used; 70 rows without weather were dropped.*
 
@@ -66,7 +100,7 @@ Effect = change in average daily turnover. Weekday effects are vs. the Monday–
 - **Cakes on 31 December are about 7 times a normal December/January day** (+627 % on average; between +511 % and +702 % in every one of the 5 years). *How sure:* strong and consistent. *Does not tell us:* which product causes it (possibly New Year's Eve doughnuts; ask the client). It is a single day per year, so the model needs a special rule or a feature for it.
 - *General limit:* all effects are in turnover, not pieces. Price changes between 2013 and 2018 are hidden inside the year effect.
 
-## Open questions
+### Open questions
 
 - **Price data** per product group, to convert turnover into pieces and to separate price changes from demand. *Resolves:* team, by asking the client.
 - **Opening hours** on Sundays and holidays (24 Dec, 31 Dec; closed 25/26 Dec and 1 Jan?). *Resolves:* client.
@@ -75,3 +109,5 @@ Effect = change in average daily turnover. Weekday effects are vs. the Monday–
 - **Weather forecast vs observed weather:** can we get historical forecasts, or do we accept observed weather as an upper bound? *Resolves:* team (canvas block 6).
 - **Kiel Week:** with only 5 events, should the model use one Kiel Week effect for all groups or one per group? *Resolves:* team, when building the model.
 - **Holidays not yet checked:** Easter, Pentecost, other public holidays and school holidays. *Resolves:* team, in a later week.
+
+</details>
