@@ -106,6 +106,9 @@ Newest first. One entry per decision taken at a stop point.
 **Alternatives considered:** Head baker or head office decides; decision late in the evening; several decisions per day. Not chosen: head office is not involved in daily quantities, and the night shift needs the plan earlier.
 **Decided by:** Team HASH (Q1 of /grill-question). The exact time is an assumption, see Open questions on the canvas.
 
+Week 4 test
+
+
 <!--
 ## YYYY-MM-DD: <short title>
 **Canvas block:** <number>
